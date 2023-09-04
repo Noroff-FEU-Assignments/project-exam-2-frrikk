@@ -1,9 +1,9 @@
 "use client";
 
-import { useForm, SubmitHandler, UseFormRegister } from "react-hook-form";
-import { ReactNode } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import React, { ReactNode } from "react";
 import { IconLock, IconMail, IconUserCircle } from "@tabler/icons-react";
-import Link from "next/link";
+import { postFetch } from "@/app/_utils/fetch";
 
 type Inputs = {
   name: string;
@@ -18,33 +18,11 @@ export default function Form() {
     register,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      // Perform the POST request here
-      const response = await fetch(
-        "https://api.noroff.dev/api/v1/social/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        },
-      );
 
-      if (response.ok) {
-        // Handle success
-        console.log("Data submitted successfully");
-        console.log({ response });
-      } else {
-        // Handle errors
-        console.error("Failed to submit data");
-        console.log(JSON.stringify(data));
-      }
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
-  };
+  const onSubmit: SubmitHandler<Inputs> = async (data) =>
+    await postFetch("auth/register", data);
+
+  console.log({ errors });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
@@ -54,19 +32,26 @@ export default function Form() {
         label="Username"
         labelIcon={<IconUserCircle />}
         type="text"
-        register={register}
+        {...register("name", { required: true })}
       />
       {errors.name && <span>This field is required</span>}
 
       <InputField
         fieldType="email"
-        register={register}
         required
         label="Email"
         labelIcon={<IconMail />}
         type="email"
+        {...register("email", {
+          pattern: {
+            value: /^(.+\@noroff\.no)|(.+\@stud\.noroff\.no)$/,
+            message:
+              "Please enter a valid noroff.no or stud.noroff.no email address",
+          },
+          required: true,
+        })}
       />
-      {errors.email && <span>This field is required</span>}
+      {errors.email && <span>{errors.email.types?.pattern}</span>}
 
       <InputField
         type="password"
@@ -74,7 +59,7 @@ export default function Form() {
         required
         label="Password"
         labelIcon={<IconLock />}
-        register={register}
+        {...register("password", { required: true })}
       />
       {errors.password && <span>This field is required</span>}
 
@@ -98,26 +83,19 @@ interface InputFieldProps {
   required: boolean;
   labelIcon: ReactNode;
   type?: string;
-  register: UseFormRegister<Inputs>;
 }
-const InputField = ({
-  label,
-  fieldType,
-  required,
-  labelIcon,
-  type,
-  register,
-}: InputFieldProps) => {
-  return (
-    <div className="flex border border-slate-200 items-center gap-2 rounded-xl pl-2 pr-1 py-1">
-      <label htmlFor={label}>{labelIcon}</label>
-      <input
-        type={type}
-        placeholder={label}
-        id={label}
-        className="w-full p-2 rounded-lg placeholder:text-slate-700"
-        {...register(fieldType, { required: required })}
-      />
-    </div>
-  );
-};
+const InputField = React.forwardRef(
+  ({ label, labelIcon, type }: InputFieldProps, ref) => {
+    return (
+      <div className="flex border border-slate-200 items-center gap-2 rounded-xl pl-2 pr-1 py-1">
+        <label htmlFor={label}>{labelIcon}</label>
+        <input
+          type={type}
+          placeholder={label}
+          id={label}
+          className="w-full p-2 rounded-lg placeholder:text-slate-700"
+        />
+      </div>
+    );
+  },
+);
