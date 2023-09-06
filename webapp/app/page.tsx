@@ -27,7 +27,7 @@ export default function Home() {
         </Link>
       </div>
       <div className="mt-3 flex gap-1 flex-col">
-        <Link href={"#"}>
+        <Link href={"/login"}>
           Already have an account? <span className="underline">Log in</span>
         </Link>
       </div>

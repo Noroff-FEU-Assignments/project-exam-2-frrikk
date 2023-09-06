@@ -1,49 +1,47 @@
 "use client";
 
-import { useForm, SubmitHandler, FieldErrors } from "react-hook-form";
-import React, { ReactNode } from "react";
-import { postFetch } from "@/app/_utils/fetch";
-import {
-  IconExclamationCircle,
-  IconLock,
-  IconMail,
-  IconUserCircle,
-} from "@tabler/icons-react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import React, { ReactNode, useEffect, useState } from "react";
+import { IconExclamationCircle, IconLock, IconMail } from "@tabler/icons-react";
+import { useMutation } from "@/app/_hooks/useMutation";
+import { useRouter } from "next/navigation";
 
 type Inputs = {
-  name: string;
   email: string;
   password: string;
 };
 
-export default function RegisterForm() {
+type FormState = "initial" | "success" | "failed";
+
+export default function LoginForm() {
   const {
     handleSubmit,
-    watch,
     register,
     formState: { errors },
-  } = useForm<Inputs>({ defaultValues: { name: "", email: "", password: "" } });
+  } = useForm<Inputs>({ defaultValues: { email: "", password: "" } });
+  const [formState, setFormState] = useState<FormState>("initial");
+
+  const { jwt, loading, error, status, postFetch } = useMutation();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) =>
-    await postFetch("auth/register", data);
+    await postFetch("auth/login", data);
 
   const inputClasses = "w-full p-2 rounded-lg placeholder:text-slate-700";
-  const emailRegex = /(@stud\.noroff\.no|@noroff\.no)$/;
+
+  useEffect(() => {
+    if (status === "success") {
+      router.push("/");
+      setFormState("success");
+    }
+
+    if (status === "error") {
+      setFormState("failed");
+    }
+  }, [status]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-      <div>
-        <FormStyle hasError={!!errors.name}>
-          <label htmlFor="name">{<IconUserCircle stroke={1.5} />}</label>
-          <input
-            placeholder="Username"
-            id="name"
-            className={inputClasses}
-            {...register("name", { required: "Please provide a name" })}
-          />
-        </FormStyle>
-        {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
-      </div>
       <div>
         <FormStyle>
           <label htmlFor="email">{<IconMail stroke={1.5} />}</label>
@@ -53,11 +51,6 @@ export default function RegisterForm() {
             className={inputClasses}
             {...register("email", {
               required: "Please provide an email",
-              pattern: {
-                value: emailRegex,
-                message:
-                  "Please provide an email ending with @noroff.no or @stud.noroff.no",
-              },
             })}
           />
         </FormStyle>
@@ -71,13 +64,7 @@ export default function RegisterForm() {
             id="password"
             type="password"
             className={inputClasses}
-            {...register("password", {
-              required: "The password must be at least 8 characters",
-              minLength: {
-                value: 8,
-                message: "The password must be at least 8 characters",
-              },
-            })}
+            {...register("password")}
           />
         </FormStyle>
         {errors.password && (
@@ -90,8 +77,14 @@ export default function RegisterForm() {
         id="main-cta"
         className="w-full bg-pastel-green rounded-xl p-3 text-white font-medium text-lg self-end mt-6"
       >
-        Sign up
+        Login
       </button>
+      {status === "error" && (
+        <ErrorMessage>
+          It seems like your email or password is wrong, please check your
+          credentials
+        </ErrorMessage>
+      )}
     </form>
   );
 }
@@ -117,7 +110,7 @@ const FormStyle = ({
 const ErrorMessage = ({ children }: { children: ReactNode }) => {
   return (
     <div className="flex gap-1 mt-1 text-sm items-center text-red-800">
-      <IconExclamationCircle stroke={2} className="w-[16px]" />
+      <IconExclamationCircle stroke={2} className="min-w-[16px]" />
       <p>{children}</p>
     </div>
   );
