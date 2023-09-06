@@ -5,8 +5,8 @@ import RegisterForm from "@/app/_components/form";
 export default function SignUp() {
   return (
     <MainPage>
-      <Splash fig={9} />
-      <div className="relative">
+      <Splash fig={6} />
+      <div className="relative bottom-28">
         <RegisterForm />
       </div>
     </MainPage>

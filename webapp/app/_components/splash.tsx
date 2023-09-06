@@ -19,7 +19,7 @@ export default function Splash({ fig }: SplashProps) {
   return (
     <div
       className={cn(
-        `grid grid-cols-3 grid-rows-4 gap-4 p-4 sm:p-0 sm:mt-4 w-[250px] h-[333px] self-center`,
+        `grid grid-cols-3 grid-rows-4 gap-4 p-4 sm:p-0 sm:mt-4 min-w-[250px] min-h-[333px] self-center`,
       )}
     >
       {[...Array(fig).keys()].map((index) => (
