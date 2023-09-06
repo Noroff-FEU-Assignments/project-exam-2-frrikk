@@ -19,9 +19,8 @@ export default function LoginForm() {
     register,
     formState: { errors },
   } = useForm<Inputs>({ defaultValues: { email: "", password: "" } });
-  const [formState, setFormState] = useState<FormState>("initial");
 
-  const { jwt, loading, error, status, postFetch } = useMutation();
+  const { status, postFetch } = useMutation();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) =>
@@ -32,11 +31,6 @@ export default function LoginForm() {
   useEffect(() => {
     if (status === "success") {
       router.push("/");
-      setFormState("success");
-    }
-
-    if (status === "error") {
-      setFormState("failed");
     }
   }, [status]);
 
