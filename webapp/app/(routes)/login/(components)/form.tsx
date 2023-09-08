@@ -3,7 +3,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import React, { ReactNode, useEffect, useState } from "react";
 import { IconExclamationCircle, IconLock, IconMail } from "@tabler/icons-react";
-import { useMutation } from "@/app/_hooks/useMutation";
+import { useMutation } from "@/app/_hooks/use-mutation";
 import { useRouter } from "next/navigation";
 
 type Inputs = {

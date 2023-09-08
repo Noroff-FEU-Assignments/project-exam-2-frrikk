@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useUserContext } from "@/app/_context/user-context";
 
 type StatusMessage = "success" | "error";
 
@@ -7,6 +8,7 @@ export function useMutation() {
   const [error, setError] = useState<string | null>(null);
   const [jwt, setJwt] = useState<string | null>(null);
   const [status, setStatus] = useState<StatusMessage | null>(null);
+  const { setUser } = useUserContext();
 
   async function postFetch(url: string, data: any, apiKey?: string) {
     setLoading(true);
@@ -27,18 +29,19 @@ export function useMutation() {
 
       if (response.ok) {
         const jwtData = await response.json();
-        localStorage.setItem("token", jwtData.accessToken);
         setJwt(jwtData.accessToken);
+        setUser({
+          name: jwtData.name,
+          jwt: jwtData.accessToken,
+          isLoggedIn: true,
+        });
         setStatus("success");
       } else {
-        console.log(response.status);
-        console.log(response);
         setError("Failed to fetch data");
         setStatus("error");
       }
     } catch (error) {
       setError("An error occurred");
-      console.error("An error occurred", error);
     } finally {
       setLoading(false);
     }
