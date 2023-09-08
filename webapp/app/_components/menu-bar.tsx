@@ -12,29 +12,28 @@ import { cn } from "@/app/_utils/twclsx";
 import { useUserContext } from "@/app/_context/user-context";
 
 export default function MenuBar({ className }: { className?: string }) {
-  const pathName = usePathname();
   const { user } = useUserContext();
 
   if (user) {
     return (
       <nav
         className={cn(
-          `py-4 px-4 sm:px-8 rounded-2xl flex bg-slate-200 w-[80%] max-w-[1050px] fixed m-auto bottom-10 sm:bottom-20 left-0 right-0 justify-between ${className} `,
+          `py-4 px-4 sm:px-8 rounded-2xl flex bg-slate-200 w-[80%] max-w-[1050px] fixed m-auto bottom-12 sm:bottom-20 left-0 right-0 justify-between ${className} `,
         )}
       >
         <ul className="flex justify-between w-full">
           <NavItem>
-            <Link href="/*">
+            <Link href="/">
               <IconSmartHome size={32} />
             </Link>
           </NavItem>
           <NavItem>
-            <Link href="/add-new/*">
+            <Link href="/add-new">
               <IconSquareRoundedPlusFilled size={50} />
             </Link>
           </NavItem>
           <NavItem>
-            <Link href="/profile/*">
+            <Link href="/profile">
               <IconUser size={32} />
             </Link>
           </NavItem>

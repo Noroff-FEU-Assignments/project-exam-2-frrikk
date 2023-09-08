@@ -11,8 +11,6 @@ type Inputs = {
   password: string;
 };
 
-type FormState = "initial" | "success" | "failed";
-
 export default function LoginForm() {
   const {
     handleSubmit,

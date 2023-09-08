@@ -9,6 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useRouter } from "next/navigation";
 
 interface UserContext {
   user: User | null;
@@ -33,9 +34,7 @@ export default function UserContextProvider({ children }: UserContextProps) {
 
   useEffect(() => {
     if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-    } else {
-      localStorage.removeItem("user");
+      return localStorage.setItem("user", JSON.stringify(user));
     }
   }, [user]);
 
