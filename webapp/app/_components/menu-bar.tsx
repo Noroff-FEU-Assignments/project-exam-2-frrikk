@@ -6,7 +6,6 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 import React, { ReactNode } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/app/_utils/twclsx";
 import { useUserContext } from "@/app/_context/user-context";

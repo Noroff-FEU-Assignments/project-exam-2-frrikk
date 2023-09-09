@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { useUserContext } from "@/app/_context/user-context";
 

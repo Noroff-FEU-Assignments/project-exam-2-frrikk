@@ -17,7 +17,7 @@ interface UserContext {
 }
 export const UserContext = createContext<UserContext | null>(null);
 
-interface User {
+export interface User {
   name: string;
   jwt: string;
   isLoggedIn: boolean;

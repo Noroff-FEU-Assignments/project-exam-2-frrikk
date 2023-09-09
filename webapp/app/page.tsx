@@ -10,11 +10,7 @@ export default function LandingPage() {
   const { user } = useUserContext();
 
   if (user) {
-    return (
-      <MainPage>
-        <HomePage />
-      </MainPage>
-    );
+    return <HomePage />;
   }
 
   return (

@@ -20,7 +20,6 @@ type Inputs = {
 export default function RegisterForm() {
   const {
     handleSubmit,
-    watch,
     register,
     formState: { errors },
   } = useForm<Inputs>({ defaultValues: { name: "", email: "", password: "" } });
