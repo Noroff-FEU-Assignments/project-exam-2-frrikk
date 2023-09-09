@@ -70,24 +70,7 @@ export default function ProfilePage({ params }: { params: { name: string } }) {
   }, []);
 
   async function handleFollow() {
-    try {
-      const response = await followUser({ jwt: user?.jwt, name: params.name });
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Followed user:", data);
-      } else {
-        if (response.status === 400)
-          if (response.status === 400) {
-            const errorData = await response.json();
-            if (errorData.errors && errorData.errors.length > 0) {
-              const errorMessage = errorData.errors[0].message;
-              console.error("Error:", errorMessage);
-            }
-          }
-      }
-    } catch (err) {
-      throw new Error("Cant follow user");
-    }
+    await followUser({ jwt: user?.jwt, name: params.name });
   }
 
   const imageStyle =
