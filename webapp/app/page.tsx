@@ -1,16 +1,20 @@
 "use client";
 
 import MainPage from "@/app/_components/main-page";
-import HomePage from "@/app/_components/home";
 import Link from "next/link";
 import Splash from "@/app/_components/splash";
 import { useUserContext } from "@/app/_context/user-context";
+import HomeTabs from "@/app/_components/tabs";
 
 export default function LandingPage() {
   const { user } = useUserContext();
 
   if (user) {
-    return <HomePage />;
+    return (
+      <MainPage>
+        <HomeTabs />
+      </MainPage>
+    );
   }
 
   return (
