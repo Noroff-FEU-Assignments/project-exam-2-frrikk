@@ -1,5 +1,3 @@
-"use client";
-
 import "./globals.css";
 import UserContextProvider from "@/app/_context/user-context";
 import MenuBar from "@/app/_components/menu-bar";

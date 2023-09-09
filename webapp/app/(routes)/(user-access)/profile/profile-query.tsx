@@ -2,20 +2,31 @@
 
 import { useQuery } from "@tanstack/react-query";
 import ProfilePage from "@/app/(routes)/(user-access)/profile/profile-page";
+import axios from "axios";
+import { User, useUserContext } from "@/app/_context/user-context";
 
-export async function getProfile() {
-  const data = await fetch(
-    `https://api.noroff.dev/api/v1/social/profiles?_followers=true&_following=true&_posts=true`,
-  );
+const getPosts = async ({ user }: { user: User }) => {
+  if (!user) {
+    return null;
+  }
 
-  return await data.json();
-}
-export default function ProfileQuery(props: any) {
-  const { data } = useQuery({
-    queryKey: ["profile"],
-    queryFn: getProfile,
-    initialData: props.profile,
+  return await axios.get("https://api.noroff.dev/api/v1/social/posts", {
+    headers: { Authorization: `Bearer ${user.jwt}` },
   });
+};
+
+export default function ProfileQuery(props: any) {
+  const { user } = useUserContext();
+
+  if (!user) return null;
+
+  const { data } = useQuery({
+    queryKey: ["posts"],
+    queryFn: async () => await getPosts({ user }),
+    initialData: props.posts,
+  });
+
+  console.log({ data });
 
   return <ProfilePage data={data} />;
 }
