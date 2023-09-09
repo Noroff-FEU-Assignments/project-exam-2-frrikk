@@ -1,13 +1,15 @@
 import MainPage from "@/app/_components/main-page";
 import Splash from "@/app/_components/splash";
-import RegisterForm from "@/app/(routes)/sign-up/(components)/form";
+import LoginForm from "@/app/(routes)/login/(components)/form";
+import { useRouter } from "next/navigation";
+import { useUserContext } from "@/app/_context/user-context";
 
-export default function SignUp() {
+export default function Login() {
   return (
     <MainPage>
       <Splash fig={6} />
       <div className="relative bottom-28">
-        <RegisterForm />
+        <LoginForm />
       </div>
     </MainPage>
   );

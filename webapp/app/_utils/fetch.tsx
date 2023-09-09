@@ -13,9 +13,11 @@ export async function postFetch(url: string, data?: any, apiKey?: string) {
       },
     );
     if (response.ok) {
-      console.log(response);
-      console.log("Success");
+      const jwt = await response.json();
+      localStorage.setItem("token", jwt.accessToken);
     } else {
+      console.log(response.status);
+      console.log(response);
       console.error("failed");
     }
   } catch (error) {
