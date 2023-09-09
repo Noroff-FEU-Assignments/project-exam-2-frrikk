@@ -3,7 +3,7 @@ export type Profile = {
   email: string;
   banner?: string;
   avatar?: string;
-  count: {
+  _count: {
     posts: number;
     followers: number;
     following: number;
