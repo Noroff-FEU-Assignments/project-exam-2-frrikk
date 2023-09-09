@@ -1,15 +1,9 @@
-"use client";
+import ProfileQuery, {
+  getProfile,
+} from "@/app/(routes)/(user-access)/profile/profile-query";
 
-import MainPage from "@/app/_components/main-page";
-import { useRouter } from "next/navigation";
-import { useUserContext } from "@/app/_context/user-context";
+export default async function Profile() {
+  const initialData = await getProfile();
 
-export default function Profile() {
-  const router = useRouter();
-  const { user } = useUserContext();
-
-  if (!user) {
-    return router.push("/");
-  }
-  return <MainPage>My Profile</MainPage>;
+  return <ProfileQuery profile={initialData} />;
 }
