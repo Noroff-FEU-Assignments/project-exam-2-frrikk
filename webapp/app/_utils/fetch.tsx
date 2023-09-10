@@ -16,9 +16,6 @@ export async function postFetch(url: string, data?: any, apiKey?: string) {
       const jwt = await response.json();
       localStorage.setItem("token", jwt.accessToken);
     } else {
-      console.log(response.status);
-      console.log(response);
-      console.error("failed");
     }
   } catch (error) {
     throw new Error("An error occurred", error ?? "");

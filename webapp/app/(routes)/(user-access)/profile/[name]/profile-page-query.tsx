@@ -52,6 +52,5 @@ export default function ProfilePageQuery({ name }: ProfilePageQueryProps) {
     );
   }
 
-  console.log({ data });
   return <ProfilePage profile={data.profile} posts={data.posts} />;
 }

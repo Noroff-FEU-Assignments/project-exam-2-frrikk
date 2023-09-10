@@ -15,9 +15,6 @@ export default function ProfilePage({
   user: User;
   logOut: () => void;
 }) {
-  console.log({ data });
-  console.log({ user });
-
   const userData: UserProfile = data[0].data;
   const profileData: ProfilePost[] = data[1].data;
 

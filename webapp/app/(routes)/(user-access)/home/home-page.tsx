@@ -11,7 +11,7 @@ export default function HomePage({ data }: any) {
     format(new Date(date), "yyyy-MM-dd HH:mm");
   return (
     <>
-      <ul className="flex flex-col gap-8">
+      <ul className="flex flex-col gap-8 mb-20">
         {data.data?.map((post: Post) => {
           return (
             <li key={post.id} className="flex flex-col gap-2">
