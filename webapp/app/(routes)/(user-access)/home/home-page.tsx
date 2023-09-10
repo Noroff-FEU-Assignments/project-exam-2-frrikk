@@ -55,7 +55,7 @@ export default function HomePage({ data }: any) {
                 <div className="flex gap-1 items-center">
                   <IconMoodSmileBeam
                     size={42}
-                    className="bg-pastel-lightGreen p-2 rounded-full"
+                    className="bg-pastel-yellow p-2 rounded-full"
                   />
                   <p>{post._count.reactions ? post._count.reactions : null}</p>
                 </div>
@@ -67,12 +67,14 @@ export default function HomePage({ data }: any) {
                   <p>{post._count.comments ? post._count.comments : null}</p>
                 </div>
               </div>
-              <div className="flex gap-1">
-                <p className="font-bold text-sm">{post.author.name}</p>
-                <p className="text-sm max-w-[70ch] whitespace-nowrap overflow-hidden overflow-ellipsis">
-                  {post.body}
-                </p>
-              </div>
+              {!!post.body ? (
+                <div className="flex gap-1">
+                  <p className="font-bold text-sm">{post.author.name}</p>
+                  <p className="text-sm max-w-[70ch] whitespace-nowrap overflow-hidden overflow-ellipsis">
+                    {post.body}
+                  </p>
+                </div>
+              ) : null}
               <p className="text-sm text-slate-500">
                 posted at {formattedDate(post.created)}
               </p>

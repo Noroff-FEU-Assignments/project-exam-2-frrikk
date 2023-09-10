@@ -9,16 +9,20 @@ export type Profile = {
     following: number;
   };
 };
-//
-// export interface Post {
-//   id: number;
-//   title: string;
-//   body: string;
-//   tags: string[];
-//   media: string | null;
-//   created: Date;
-//   count: { comments: number; reactions: number };
-// }
+
+export interface ProfilePost {
+  title: string;
+  body: string;
+  tags: string[];
+  media: string;
+  created: string;
+  updated: string;
+  id: number;
+  _count: {
+    comments: number;
+    reactions: number;
+  };
+}
 
 export type Post = {
   title: string;
@@ -41,3 +45,34 @@ export type Post = {
     reactions: number;
   };
 };
+
+export interface BodyPost {
+  title: string;
+  body: string;
+  tags: string[];
+  media: string;
+}
+
+export interface UserProfile {
+  name: string;
+  email: string;
+  banner: string | null;
+  avatar: string | null;
+  followers: Follower[];
+  following: Following[];
+  _count: {
+    posts: number;
+    followers: number;
+    following: number;
+  };
+}
+
+interface Follower {
+  name: string;
+  avatar: string | null;
+}
+
+interface Following {
+  name: string;
+  avatar: string | null;
+}

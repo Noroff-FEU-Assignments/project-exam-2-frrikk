@@ -17,12 +17,12 @@ export default function MenuBar({ className }: { className?: string }) {
     return (
       <nav
         className={cn(
-          `py-4 px-4 sm:px-8 rounded-2xl flex bg-slate-200 w-[80%] max-w-[1050px]  m-auto sticky justify-between ${className} `,
+          `py-4 px-4 sm:px-8 border-t border-slate-200 flex bg-white w-[100%] max-w-[800px]  m-auto fixed bottom-0 left-0 right-0 justify-between ${className} `,
         )}
       >
         <ul className="flex justify-between w-full">
           <NavItem>
-            <Link href="/">
+            <Link href="/home">
               <IconSmartHome size={32} />
             </Link>
           </NavItem>

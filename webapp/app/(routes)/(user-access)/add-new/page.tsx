@@ -1,15 +1,12 @@
-"use client";
+import HomeQuery from "@/app/(routes)/(user-access)/home/home-query";
 
-import MainPage from "@/app/_components/main-page";
-import { useRouter } from "next/navigation";
-import { useUserContext } from "@/app/_context/user-context";
+const getPosts = async () =>
+  await fetch(
+    "https://api.noroff.dev/api/v1/social/posts?_author=true&_comments=true&_reactions=true&sort=created&sortOrder=desc",
+  ).then((data) => data.json());
 
-export default function AddNew() {
-  const router = useRouter();
-  const { user } = useUserContext();
+export default async function Profile() {
+  const initialData = await getPosts();
 
-  if (!user) {
-    return router.push("/");
-  }
-  return <MainPage>Add new thingy</MainPage>;
+  return <HomeQuery posts={initialData} />;
 }

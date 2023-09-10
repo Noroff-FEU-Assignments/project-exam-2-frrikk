@@ -5,16 +5,19 @@ import Link from "next/link";
 import Splash from "@/app/_components/splash";
 import { useUserContext } from "@/app/_context/user-context";
 import HomeTabs from "@/app/_components/tabs";
+import { useRouter } from "next/navigation";
 
 export default function LandingPage() {
   const { user } = useUserContext();
+  const router = useRouter();
 
   if (user) {
-    return (
-      <MainPage>
-        <HomeTabs />
-      </MainPage>
-    );
+    router.push("/home");
+    // return (
+    //   <MainPage>
+    //     <HomeTabs />
+    //   </MainPage>
+    // );
   }
 
   return (

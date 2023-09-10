@@ -1,18 +1,48 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import ProfilePage from "@/app/(routes)/(user-access)/profile/profile-page";
 import axios from "axios";
 import { User, useUserContext } from "@/app/_context/user-context";
+import { BodyPost } from "@/app/_types/types";
 
-const getPosts = async ({ user }: { user: User }) => {
+const getProfile = async ({ user }: { user: User }) => {
   if (!user) {
     return null;
   }
 
-  return await axios.get("https://api.noroff.dev/api/v1/social/posts", {
-    headers: { Authorization: `Bearer ${user.jwt}` },
-  });
+  const urls = [
+    `https://api.noroff.dev/api/v1/social/profiles/${user.name}?_followers=true&_following=true`,
+    `https://api.noroff.dev/api/v1/social/profiles/${user.name}/posts`,
+  ];
+
+  const responses = await Promise.all(
+    urls.map((url) =>
+      axios.get(url, { headers: { Authorization: `Bearer ${user.jwt}` } }),
+    ),
+  );
+
+  return responses;
+};
+
+const createPost = async ({
+  user,
+  newPost,
+}: {
+  user: User;
+  newPost: BodyPost;
+}) => {
+  if (!user) {
+    return null;
+  }
+
+  return await axios.post(
+    `https://api.noroff.dev/api/v1/social/posts`,
+    newPost,
+    {
+      headers: { Authorization: `Bearer ${user.jwt}` },
+    },
+  );
 };
 
 export default function ProfileQuery(props: any) {
@@ -20,13 +50,21 @@ export default function ProfileQuery(props: any) {
 
   if (!user) return null;
 
-  const { data } = useQuery({
-    queryKey: ["posts"],
-    queryFn: async () => await getPosts({ user }),
-    initialData: props.posts,
+  const { data, isFetching, error } = useQuery({
+    queryKey: ["profile", "post"],
+    queryFn: async () => await getProfile({ user }),
+    initialData: props.profile,
   });
 
-  console.log({ data });
+  if (!data) return null;
 
-  return <ProfilePage data={data} />;
+  if (error) {
+    throw new Error("Error has occurred", error);
+  }
+
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
+
+  return <ProfilePage data={data} user={user} />;
 }
