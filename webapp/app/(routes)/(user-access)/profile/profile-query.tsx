@@ -34,6 +34,7 @@ export default function ProfileQuery(props: any) {
   useEffect(() => {
     if (!user) {
       router.push("/");
+      router.refresh();
     }
   }, [user]);
 
@@ -41,6 +42,7 @@ export default function ProfileQuery(props: any) {
     localStorage.removeItem("user");
     setUser(null);
     router.push("/");
+    router.refresh();
   };
 
   const { data, isFetching, error } = useQuery({

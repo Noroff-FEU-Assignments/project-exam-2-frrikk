@@ -1,4 +1,3 @@
-import MainPage from "@/app/_components/main-page";
 import Splash from "@/app/_components/splash";
 import RegisterForm from "@/app/(routes)/sign-up/(components)/form";
 
