@@ -27,16 +27,14 @@ interface UserContextProps {
   children: ReactNode;
 }
 export default function UserContextProvider({ children }: UserContextProps) {
-  const [user, setUser] = useState<User | null>(() => {
-    useEffect(() => {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
-    }, []);
+  const [user, setUser] = useState<User | null>(null);
 
-    return null;
-  });
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   return (
     <UserContext.Provider
