@@ -6,7 +6,7 @@ import axios from "axios";
 import { User, useUserContext } from "@/app/_context/user-context";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import LoadingState from "@/app/_components/loading-state";
+import Loading from "@/app/loading";
 
 const getProfile = async ({ user }: { user: User }) => {
   if (!user) {
@@ -56,7 +56,7 @@ export default function ProfileQuery(props: any) {
   }
 
   if (isFetching) {
-    return <LoadingState />;
+    return <Loading />;
   }
 
   return <ProfilePage data={data} user={user} logOut={logOut} />;

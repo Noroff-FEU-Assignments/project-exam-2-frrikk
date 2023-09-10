@@ -5,8 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 import ProfilePage from "@/app/(routes)/(user-access)/profile/[name]/profile-page";
 import { User, useUserContext } from "@/app/_context/user-context";
 import { Post, UserProfile } from "@/app/_types/types";
-import { JellyTriangle } from "@uiball/loaders";
-import MainPage from "@/app/_components/main-page";
 
 interface ProfilePageQueryProps {
   name: string;
@@ -42,14 +40,6 @@ export default function ProfilePageQuery({ name }: ProfilePageQueryProps) {
 
   if (!data) {
     return null;
-  }
-
-  if (isFetching) {
-    return (
-      <MainPage className="flex justify-center items-center">
-        <JellyTriangle size={50} />
-      </MainPage>
-    );
   }
 
   return <ProfilePage profile={data.profile} posts={data.posts} />;

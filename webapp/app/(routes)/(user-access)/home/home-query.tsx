@@ -6,7 +6,7 @@ import { User, useUserContext } from "@/app/_context/user-context";
 import HomePage from "@/app/(routes)/(user-access)/home/home-page";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import LoadingState from "@/app/_components/loading-state";
+import Loading from "@/app/loading";
 
 const getPosts = async ({ user }: { user: User }) => {
   if (!user) {
@@ -47,7 +47,7 @@ export default function HomeQuery(props: any) {
   }
 
   if (isFetching) {
-    return <LoadingState />;
+    return <Loading />;
   }
 
   return <HomePage data={data} />;
