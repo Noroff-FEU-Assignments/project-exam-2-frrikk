@@ -2,6 +2,7 @@ import "./globals.css";
 import UserContextProvider from "@/app/_context/user-context";
 import MenuBar from "@/app/_components/menu-bar";
 import Providers from "@/app/providers";
+import MainPage from "@/app/_components/main-page";
 
 export default function RootLayout({
   children,
@@ -16,7 +17,7 @@ export default function RootLayout({
       >
         <Providers>
           <UserContextProvider>
-            {children}
+            <MainPage>{children}</MainPage>
             <MenuBar />
           </UserContextProvider>
         </Providers>

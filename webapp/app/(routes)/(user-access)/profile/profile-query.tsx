@@ -4,6 +4,9 @@ import { useQuery } from "@tanstack/react-query";
 import ProfilePage from "@/app/(routes)/(user-access)/profile/profile-page";
 import axios from "axios";
 import { User, useUserContext } from "@/app/_context/user-context";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import LoadingState from "@/app/_components/loading-state";
 
 const getProfile = async ({ user }: { user: User }) => {
   if (!user) {
@@ -23,9 +26,22 @@ const getProfile = async ({ user }: { user: User }) => {
 };
 
 export default function ProfileQuery(props: any) {
-  const { user } = useUserContext();
+  const { user, setUser } = useUserContext();
+  const router = useRouter();
 
   if (!user) return null;
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/");
+    }
+  }, [user]);
+
+  const logOut = async () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    router.push("/");
+  };
 
   const { data, isFetching, error } = useQuery({
     queryKey: ["profile", "post"],
@@ -40,8 +56,8 @@ export default function ProfileQuery(props: any) {
   }
 
   if (isFetching) {
-    return <div>Loading...</div>;
+    return <LoadingState />;
   }
 
-  return <ProfilePage data={data} user={user} />;
+  return <ProfilePage data={data} user={user} logOut={logOut} />;
 }

@@ -1,5 +1,4 @@
 import { Post } from "@/app/_types/types";
-import MainPage from "@/app/_components/main-page";
 import Link from "next/link";
 import Image from "next/image";
 import placeholderImage from "@/public/placeholder-image.png";
@@ -11,13 +10,13 @@ export default function HomePage({ data }: any) {
   const formattedDate = (date: Date | string) =>
     format(new Date(date), "yyyy-MM-dd HH:mm");
   return (
-    <MainPage>
+    <>
       <ul className="flex flex-col gap-8">
         {data.data?.map((post: Post) => {
           return (
             <li key={post.id} className="flex flex-col gap-2">
               <Link
-                href={`profiles/${post.author.name}`}
+                href={`profile/${post.author.name}`}
                 className="flex gap-2 items-center"
               >
                 <div>
@@ -69,7 +68,12 @@ export default function HomePage({ data }: any) {
               </div>
               {!!post.body ? (
                 <div className="flex gap-1">
-                  <p className="font-bold text-sm">{post.author.name}</p>
+                  <Link
+                    href={`profile/${post.author.name}`}
+                    className="font-bold text-sm"
+                  >
+                    {post.author.name}
+                  </Link>
                   <p className="text-sm max-w-[70ch] whitespace-nowrap overflow-hidden overflow-ellipsis">
                     {post.body}
                   </p>
@@ -82,6 +86,6 @@ export default function HomePage({ data }: any) {
           );
         })}
       </ul>
-    </MainPage>
+    </>
   );
 }

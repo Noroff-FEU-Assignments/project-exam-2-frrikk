@@ -21,7 +21,7 @@ export default function LandingPage() {
   }
 
   return (
-    <MainPage>
+    <>
       <Splash fig={12} />
       <h1 className="flex flex-col justify-center italic items-center font-serif font-medium text-xl text-slate-700 mt-4">
         Welcome to{" "}
@@ -48,6 +48,6 @@ export default function LandingPage() {
           Already have an account? <span className="underline">Log in</span>
         </Link>
       </div>
-    </MainPage>
+    </>
   );
 }

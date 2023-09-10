@@ -1,3 +1,5 @@
+import { omit } from "next/dist/shared/lib/router/utils/omit";
+
 export type Profile = {
   name: string;
   email: string;
@@ -22,6 +24,13 @@ export interface ProfilePost {
     comments: number;
     reactions: number;
   };
+}
+
+export interface EditableProfilePost {
+  title: string;
+  body: string;
+  tags: string[];
+  updated: string;
 }
 
 export type Post = {

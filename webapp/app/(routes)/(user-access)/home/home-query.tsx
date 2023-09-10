@@ -4,7 +4,9 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { User, useUserContext } from "@/app/_context/user-context";
 import HomePage from "@/app/(routes)/(user-access)/home/home-page";
-import MainPage from "@/app/_components/main-page";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import LoadingState from "@/app/_components/loading-state";
 
 const getPosts = async ({ user }: { user: User }) => {
   if (!user) {
@@ -20,9 +22,19 @@ const getPosts = async ({ user }: { user: User }) => {
 };
 
 export default function HomeQuery(props: any) {
-  const { user } = useUserContext();
+  const { user, setUser } = useUserContext();
+  const router = useRouter();
 
-  if (!user) return null;
+  useEffect(() => {
+    if (!user) {
+      setUser(null);
+      router.push("/");
+    }
+  }, [user]);
+
+  if (!user) {
+    return null;
+  }
 
   const { data, error, isFetching } = useQuery({
     queryKey: ["posts"],
@@ -35,10 +47,8 @@ export default function HomeQuery(props: any) {
   }
 
   if (isFetching) {
-    return <Loading />;
+    return <LoadingState />;
   }
 
   return <HomePage data={data} />;
 }
-
-const Loading = () => <MainPage>Loading...</MainPage>;
