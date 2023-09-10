@@ -1,15 +1,5 @@
-"use client";
+import AddPostQuery from "@/app/(routes)/(user-access)/add-new/add-post-query";
 
-import MainPage from "@/app/_components/main-page";
-import { useRouter } from "next/navigation";
-import { useUserContext } from "@/app/_context/user-context";
-
-export default function AddNew() {
-  const router = useRouter();
-  const { user } = useUserContext();
-
-  if (!user) {
-    return router.push("/");
-  }
-  return <MainPage>Add new thingy</MainPage>;
+export default async function AddPost() {
+  return <AddPostQuery />;
 }

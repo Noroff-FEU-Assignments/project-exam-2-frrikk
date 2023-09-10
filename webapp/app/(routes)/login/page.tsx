@@ -6,11 +6,11 @@ import { useUserContext } from "@/app/_context/user-context";
 
 export default function Login() {
   return (
-    <MainPage>
+    <>
       <Splash fig={6} />
       <div className="relative bottom-28">
         <LoginForm />
       </div>
-    </MainPage>
+    </>
   );
 }

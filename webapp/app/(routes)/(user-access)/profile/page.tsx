@@ -1,15 +1,12 @@
-"use client";
+import ProfileQuery from "@/app/(routes)/(user-access)/profile/profile-query";
 
-import MainPage from "@/app/_components/main-page";
-import { useRouter } from "next/navigation";
-import { useUserContext } from "@/app/_context/user-context";
+const getProfile = async () =>
+  await fetch("https://api.noroff.dev/api/v1/social/profiles/").then((data) =>
+    data.json(),
+  );
 
-export default function Profile() {
-  const router = useRouter();
-  const { user } = useUserContext();
+export default async function Profile() {
+  const initialData = await getProfile();
 
-  if (!user) {
-    return router.push("/");
-  }
-  return <MainPage>My Profile</MainPage>;
+  return <ProfileQuery posts={initialData} />;
 }

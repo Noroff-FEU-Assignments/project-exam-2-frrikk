@@ -10,6 +10,8 @@ import {
   IconMail,
   IconUserCircle,
 } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 type Inputs = {
   name: string;
@@ -18,14 +20,20 @@ type Inputs = {
 };
 
 export default function RegisterForm() {
+  const router = useRouter();
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<Inputs>({ defaultValues: { name: "", email: "", password: "" } });
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) =>
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await postFetch("auth/register", data);
+    toast.success("User created!", {
+      duration: 2000,
+    });
+    setTimeout(() => router.push("/login"), 2000);
+  };
 
   const inputClasses = "w-full p-2 rounded-lg placeholder:text-slate-700";
   const emailRegex = /(@stud\.noroff\.no|@noroff\.no)$/;
@@ -92,6 +100,7 @@ export default function RegisterForm() {
       >
         Sign up
       </button>
+      <Toaster />
     </form>
   );
 }
