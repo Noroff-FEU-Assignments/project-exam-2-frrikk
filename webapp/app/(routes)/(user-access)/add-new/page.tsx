@@ -1,4 +1,7 @@
 import HomeQuery from "@/app/(routes)/(user-access)/home/home-query";
+import { User } from "@/app/_context/user-context";
+import { BodyPost } from "@/app/_types/types";
+import axios from "axios";
 
 const getPosts = async () =>
   await fetch(
@@ -10,3 +13,23 @@ export default async function Profile() {
 
   return <HomeQuery posts={initialData} />;
 }
+
+// const createPost = async ({
+//                             user,
+//                             newPost,
+//                           }: {
+//   user: User;
+//   newPost: BodyPost;
+// }) => {
+//   if (!user) {
+//     return null;
+//   }
+//
+//   return await axios.post(
+//       `https://api.noroff.dev/api/v1/social/posts`,
+//       newPost,
+//       {
+//         headers: { Authorization: `Bearer ${user.jwt}` },
+//       },
+//   );
+// };
