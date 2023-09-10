@@ -5,8 +5,11 @@ import Image from "next/image";
 import placeholderImage from "@/public/placeholder-image.png";
 import React from "react";
 import { IconMessageCircle2, IconMoodSmileBeam } from "@tabler/icons-react";
+import { format } from "date-fns";
 
 export default function HomePage({ data }: any) {
+  const formattedDate = (date: Date | string) =>
+    format(new Date(date), "yyyy-MM-dd HH:mm");
   return (
     <MainPage>
       <ul className="flex flex-col gap-8">
@@ -64,7 +67,15 @@ export default function HomePage({ data }: any) {
                   <p>{post._count.comments ? post._count.comments : null}</p>
                 </div>
               </div>
-              <p>{post.created}</p>
+              <div className="flex gap-1">
+                <p className="font-bold text-sm">{post.author.name}</p>
+                <p className="text-sm max-w-[70ch] whitespace-nowrap overflow-hidden overflow-ellipsis">
+                  {post.body}
+                </p>
+              </div>
+              <p className="text-sm text-slate-500">
+                posted at {formattedDate(post.created)}
+              </p>
             </li>
           );
         })}
