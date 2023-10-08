@@ -1,89 +1,70 @@
 # Project Exam 2
-## Goal
-To take the skills learned over the last two years and take on an extensive project where the finished product should reflect the candidate's general development capabilities, in addition to visual and technical skills.
 
-## Brief
-An existing Social Media company has approached you to create a brand new front end for their application. While they have a list of required features, the design and user experience has not been specified. Working with the official API documentation, plan, design and build a modern front end social media application.
+![image](https://user-images.githubusercontent.com/52622303/164316813-4b12d99f-aeb7-4069-85cf-e72b3a50ac99.png)
 
-## Requirements
+A simple overview of the use/purpose of the project.
 
-> All admin functionality is managed by an existing application. This project only covers the front-end application for the API.
+## Description
 
-## API
+Add a more detailed description of what your project entails and set out to do.
 
-The API you are using for this project can be found under Social EndPoints in the [Noroff API documentation](https://noroff-api-docs.netlify.app/).
+You can add some bullet points if you'd like to:
 
-### Resources
+- List item 1
+- List item 2
+- List item 3
 
-[API Guide](https://noroff-api-docs.netlify.app/social-endpoints/authentication)
-[API Documentation](https://nf-api.onrender.com/docs)
+## Built With
 
-### User Stories
+You can list a the tech stack that you've used over here
 
-The client has specified the following requirements in the form of *User Stories*:
-1. A user with a `stud.noroff.no` email may register
-2. A registered user may login
-3. A registered user may update their avatar and banner
-4. A registered user may logout
-5. A registered user may view a list of `Posts`
-6. A registered user may view a list of `Profiles`
-7. A registered user may view a single `Post` by `id`
-8. A registered user may view a single `Profile` by `name`
-9. A registered user may create a `Post`
-10. A registered user may update a `Post` they own
-11. A registered user may delete a `Post` they own
-12. A registered user may create a `Comment` on any `Post`
-13. A registered user may `react` to any `Post` with an emoji
-14. A registered user may `follow` and `unfollow` another `Profile`
+- [React.js](https://reactjs.org/)
+- [Bootstrap](https://getbootstrap.com)
 
-### Technical Restrictions
+## Getting Started
 
-The company CTO has set the following technical restrictions:
-1. Must use an approved `JavaScript Framework`
-2. Must use an approved `CSS Framework`
-3. Must be hosted on an approved `Static Host`
-4. Must use an approved `Design Application`
-5. Must use an approved `Planning Application`
+### Installing
 
-### Required Links
+This is where you list how to get the project started. It typically just includes telling a person to clone the repo and then to install the dependencies e.g.
 
-The Product Owner has requested links to the following:
-1. A Gantt chart for project timing
-2. A design prototype
-3. A style guide
-4. A kanban project board
-5. A repository link
-6. A hosted application demo link
+1. Clone the repo:
 
-## Approved Resources
-This list covers libraries and services that have been vetted by the company and approved for use.
+```bash
+git clone git@github.com:NoroffFEU/portfolio-1-example.git
+```
 
-### JavaScript Frameworks
-- React (>16)
+2. Install the dependencies:
 
-### CSS Frameworks
-- Bootstrap (>5)
-- Tailwind (>3)
-- MUI (>5)
-- Styled Components
-- CSS Modules
+```
+npm install
+```
 
-### Hosting Services
-- GitHub Pages
-- Netlify
+### Running
 
-### Design Applications
-- Adobe XD
-- Figma
-- Sketch
+Here is where you detail how to run the app. It typically involves the commands you'd need to run to start the project e.g.
 
-### Planning Applications
-- Trello
-- GitHub Projects
+To run the app, run the following commands:
 
-## Delivery
-Include the required links in the Moodle delivery window using [this template format](delivery-template.html).
+```bash
+npm run start
+```
 
-All final changes must be merged into the default branch `main` or `master`. Other branches will not be checked.
+## Contributing
 
-Ensure that the `readme.md` file describes your project thoroughly, including how to setup and run the project locally and any special instructions for testers.
+Here you can detail any information you want to provide regarding contributing to the project. For big projects you will usually have a separate `CONTRIBUTING.md` and link to it, but for smaller projects you can simply include instructions here. These instructions can simply detail the process you want a person to take, such as to make sure to open a pull request so code can be reviewed.
+
+## Contact
+
+This is where you can leave your social links for people to contact you, such as a LinkedIn profile or Twitter link e.g.
+
+[My Twitter page](www.twitter.com)
+
+[My LinkedIn page](www.linkedin.com)
+
+## License
+
+You can link to your license file here if you're using one, or mention what license the codebase falls under. If you're unsure then you can simply delete this section.
+
+## Acknowledgments
+
+This is where you can add any acknowledgements if you'd like, such as to people who have helped you or any code snippets you'd like to mention. You can delete this section if you don't have any acknowledgements to make.
