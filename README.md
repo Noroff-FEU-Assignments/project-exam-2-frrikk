@@ -2,35 +2,35 @@
 
 ![image](https://user-images.githubusercontent.com/85999465/273463179-365af159-eae0-4f29-8c3c-3243c920a070.png)
 
-A simple overview of the use/purpose of the project.
+The purpose of the project was to make a social platform for the business that should let users see peoples posts, profiles, followers and much more!
 
 ## Description
 
-Add a more detailed description of what your project entails and set out to do.
+The project consists of logic that lets you create a social profile if you have a valid @noroff-mail address. Within the application, you can explore other peoples "corners" that lists their followers and who they are following. The main goal of the web-app is to let people get to know each other and have fun whilst doing so!
 
-You can add some bullet points if you'd like to:
+Some of the key aspects of this app is as follows:
 
-- List item 1
-- List item 2
-- List item 3
+- User signup and login of people with @noroff-mail addresses
+- Being able to post new content and to view others
+- A light and easy design that makes it easy to use
 
 ## Built With
 
 You can list a the tech stack that you've used over here
 
-- [React.js](https://reactjs.org/)
-- [Bootstrap](https://getbootstrap.com)
+- [Next.js](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
 
 ## Getting Started
 
 ### Installing
 
-This is where you list how to get the project started. It typically just includes telling a person to clone the repo and then to install the dependencies e.g.
+To get the project started, please do as follows:
 
 1. Clone the repo:
 
 ```bash
-git clone git@github.com:NoroffFEU/portfolio-1-example.git
+git clone git@github.com:Noroff-FEU-Assignments/project-exam-2-frrikk.git
 ```
 
 2. Install the dependencies:
@@ -41,30 +41,23 @@ npm install
 
 ### Running
 
-Here is where you detail how to run the app. It typically involves the commands you'd need to run to start the project e.g.
-
 To run the app, run the following commands:
 
+Dev mode
 ```bash
-npm run start
+npm run dev
 ```
 
-## Contributing
-
-Here you can detail any information you want to provide regarding contributing to the project. For big projects you will usually have a separate `CONTRIBUTING.md` and link to it, but for smaller projects you can simply include instructions here. These instructions can simply detail the process you want a person to take, such as to make sure to open a pull request so code can be reviewed.
+Build app
+```bash
+npm run build && npm run start
+```
 
 ## Contact
 
-This is where you can leave your social links for people to contact you, such as a LinkedIn profile or Twitter link e.g.
+Please checkout my social links to reach out to me
 
-[My Twitter page](www.twitter.com)
+[My Twitter page](https://twitter.com/frikkhex)
 
-[My LinkedIn page](www.linkedin.com)
+[My LinkedIn page](https://www.linkedin.com/in/frikk-alexander/)
 
-## License
-
-You can link to your license file here if you're using one, or mention what license the codebase falls under. If you're unsure then you can simply delete this section.
-
-## Acknowledgments
-
-This is where you can add any acknowledgements if you'd like, such as to people who have helped you or any code snippets you'd like to mention. You can delete this section if you don't have any acknowledgements to make.
