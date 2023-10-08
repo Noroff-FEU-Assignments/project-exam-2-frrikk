@@ -1,6 +1,6 @@
 # Project Exam 2
 
-![image](https://user-images.githubusercontent.com/52622303/164316813-4b12d99f-aeb7-4069-85cf-e72b3a50ac99.png)
+![image](https://user-images.githubusercontent.com/85999465/273463179-365af159-eae0-4f29-8c3c-3243c920a070.png)
 
 A simple overview of the use/purpose of the project.
 
