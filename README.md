@@ -16,7 +16,7 @@ Some of the key aspects of this app is as follows:
 
 ## Built With
 
-You can list a the tech stack that you've used over here
+This project is built with:
 
 - [Next.js](https://nextjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
